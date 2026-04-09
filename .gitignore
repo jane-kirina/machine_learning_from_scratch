@@ -1,0 +1,11 @@
+# Folders
+__pycache__/
+_DUMB/
+
+# Files
+_temp.*
+
+# Other
+notebooks/logistic_regression.ipynb
+ml_from_scratch/decomposition/pca.py
+ml_from_scratch/preprocessing.py
