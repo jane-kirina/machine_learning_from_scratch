@@ -6,6 +6,5 @@ _DUMB/
 _temp.*
 
 # Other
-notebooks/logistic_regression.ipynb
 ml_from_scratch/decomposition/pca.py
 ml_from_scratch/preprocessing.py
