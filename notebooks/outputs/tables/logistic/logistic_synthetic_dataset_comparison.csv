@@ -1,0 +1,6 @@
+Metric,Scratch,Sklearn
+Accuracy,0.975,0.975
+Precision,0.975,0.975
+Recall,0.975,0.975
+F1_score,0.975,0.975
+ROC_AUC,0.959375,0.960625

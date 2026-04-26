@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import json
+import pandas as pd
 
 from ml_from_scratch.metrics import (mae_score, mse_score, r2_score,
                                      accuracy_score, precision_score, recall_score, f_beta_score, roc_auc_score)
@@ -16,15 +17,51 @@ def regression_report(y_true, y_pred):
         "R2": r2_score(y_true, y_pred)
     }
 
-def classification_report(y_true, y_pred, y_proba):
+def classification_metrics_report(y_true, y_pred, y_proba):
     metrics = {
         "Accuracy": accuracy_score(y_true, y_pred),
-        "Precision": precision_score(y_true, y_pred, zero_division=0),
-        "Recall": recall_score(y_true, y_pred, zero_division=0),
-        "F1_score": f_beta_score(y_true, y_pred, zero_division=0),
+        "Precision": precision_score(y_true, y_pred),
+        "Recall": recall_score(y_true, y_pred),
+        "F1_score": f_beta_score(y_true, y_pred),
         "ROC_AUC": roc_auc_score(y_true, y_proba)
     }
     return metrics
+
+def classification_report(y_true, y_pred, digits=4): # TODO
+    pass
+
+# --------
+# BUILDERS FOR REPORTS
+# --------
+def build_classification_comparison_df(scratch_metrics, sklearn_metrics, tuned_metrics=None):
+    comparison = pd.DataFrame({
+        "Metric": ["Accuracy", "Precision", "Recall", "F1_score", "ROC_AUC"],
+        "Scratch": [
+            scratch_metrics["Accuracy"],
+            scratch_metrics["Precision"],
+            scratch_metrics["Recall"],
+            scratch_metrics["F1_score"],
+            scratch_metrics["ROC_AUC"],
+        ],
+        "Sklearn": [
+            sklearn_metrics["Accuracy"],
+            sklearn_metrics["Precision"],
+            sklearn_metrics["Recall"],
+            sklearn_metrics["F1_score"],
+            sklearn_metrics["ROC_AUC"],
+        ],
+    })
+
+    if tuned_metrics is not None:
+        comparison["Tuned Scratch"] = comparison["Metric"].map({
+            "Accuracy": tuned_metrics["Accuracy"],
+            "Precision": tuned_metrics["Precision"],
+            "Recall": tuned_metrics["Recall"],
+            "F1_score": tuned_metrics["F1_score"],
+            "ROC_AUC": tuned_metrics["ROC_AUC"],
+        })
+
+    return comparison
 
 # --------
 # PRINT & SAVE REPORTS
@@ -34,11 +71,10 @@ def print_report(title, metrics):
     for key, value in metrics.items():
         print(f"{key}: {value:.4f}")
     print("-" * 40)
-    
+
 def save_metrics(filename, metrics_dict):
     with open(filename, "w") as f:
         json.dump(metrics_dict, f, indent=4)
-
 
 # --------
 # VISUAL
