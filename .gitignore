@@ -1,0 +1,12 @@
+# Folders
+__pycache__/
+_DUMB/
+.venv/
+temp/
+
+# Files
+_temp.*
+
+# Other
+ml_from_scratch/decomposition/pca.py
+ml_from_scratch/preprocessing.py

@@ -1,0 +1,23 @@
+{
+    "parameters": {
+        "k": 5,
+        "metric": "euclidean",
+        "weights": "uniform"
+    },
+    "real_dataset": {
+        "scratch": {
+            "Accuracy": 0.9385964912280702,
+            "Precision": 0.9117647058823529,
+            "Recall": 0.9841269841269841,
+            "F1_score": 0.9465648854961831,
+            "ROC_AUC": 0.9516028633675693
+        },
+        "sklearn": {
+            "Accuracy": 0.9385964912280702,
+            "Precision": 0.9117647058823529,
+            "Recall": 0.9841269841269841,
+            "F1_score": 0.9465648854961831,
+            "ROC_AUC": 0.9516028633675693
+        }
+    }
+}
